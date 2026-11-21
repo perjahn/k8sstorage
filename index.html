@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kubernetes Storage</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <main>
+    <h1>Kubernetes Storage</h1>
+    <p class="description">Sum of requested PVC storage by storage class and cluster. Values are requested capacities, not measured usage.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Storage class</th>
+            {{range .Clusters}}
+            <th scope="col" data-sort-label="{{.Name}}" title="{{.Tooltip}}"{{if .Error}} class="unavailable"{{end}}>{{.Name}}{{if .Error}} (unavailable){{end}}</th>
+            {{end}}
+            <th scope="col" class="total">All clusters</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{range .Rows}}
+          <tr>
+            <th scope="row"{{if .Tooltip}} title="{{.Tooltip}}"{{end}}>{{.Class}}</th>
+            {{range .Cells}}<td{{if .Unavailable}} class="class-unavailable"{{end}} title="{{.Tooltip}}">{{.Amount}}</td>{{end}}
+            <td class="total" title="{{.TotalTooltip}}">{{.Total}}</td>
+          </tr>
+          {{else}}
+          <tr><td class="empty" colspan="{{add (len .Clusters) 2}}">No PVC storage requests found.</td></tr>
+          {{end}}
+        </tbody>
+        <tfoot>
+          <tr>
+            <th scope="row">All storage classes</th>
+            {{range $index, $value := .ClusterTotal}}<td title="{{index $.ClusterTotalTooltip $index}}">{{$value}}</td>{{end}}
+            <td class="total" title="{{.GrandTotalTooltip}}">{{.GrandTotal}}</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </main>
+</body>
+</html>

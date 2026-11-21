@@ -1,0 +1,116 @@
+:root {
+  color-scheme: light dark;
+  font: 15px/1.5 system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 2rem;
+  background: Canvas;
+  color: CanvasText;
+}
+
+main {
+  max-width: 90rem;
+  margin: 0 auto;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.7rem;
+}
+
+.description {
+  color: GrayText;
+}
+
+.table-wrap {
+  overflow: auto;
+  border: 1px solid color-mix(in srgb, CanvasText 18%, transparent);
+  border-radius: 0.4rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  white-space: nowrap;
+}
+
+th,
+td {
+  padding: 0.65rem 0.85rem;
+  border-bottom: 1px solid color-mix(in srgb, CanvasText 14%, transparent);
+  text-align: right;
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+  background: color-mix(in srgb, Canvas 92%, CanvasText 8%);
+}
+
+.sort-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.sort-button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+.sort-indicator {
+  color: GrayText;
+  font-size: 0.8em;
+}
+
+th:first-child,
+td:first-child {
+  text-align: left;
+}
+
+tbody th {
+  font-weight: 500;
+}
+
+.total {
+  border-left: 2px solid color-mix(in srgb, CanvasText 24%, transparent);
+  font-weight: 700;
+}
+
+tfoot th,
+tfoot td {
+  border-top: 2px solid color-mix(in srgb, CanvasText 35%, transparent);
+  border-bottom: 0;
+  font-weight: 700;
+}
+
+.unavailable {
+  text-decoration: underline dotted;
+  text-decoration-color: #c33;
+}
+
+.class-unavailable {
+  background: #f8d7da;
+  color: #58151c;
+}
+
+.empty {
+  padding: 1.5rem;
+  color: GrayText;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 1rem;
+  }
+}
